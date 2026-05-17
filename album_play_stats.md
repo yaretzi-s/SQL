@@ -46,7 +46,7 @@ ON al.album_id = s.album_id
 JOIN plays p 
 ON s.song_id = p.song_id 
 WHERE s.genre = '流行'
-GROUP BY al.album_id, al.album_name, ar.artist_name
+GROUP BY al.album_id, al.album_name, ar.artist_name # 豆包说al.album_id是主键，可以不写后面的两个
 HAVING SUM(p.play_count) > 1000
 ORDER BY total_plays DESC
 ```
