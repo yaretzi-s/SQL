@@ -51,5 +51,6 @@ HAVING SUM(p.play_count) > 1000
 ORDER BY total_plays DESC
 ```
 ### 结果：
-album_id album_name artist_name total_plays
-101 流行精选集 李华 1200
+| album_id | album_name | artist_name | total_plays |
+|----------|------------|-------------|-------------|
+| 101      | 流行精选集   | 李华         | 1200        |
