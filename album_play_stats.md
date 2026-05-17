@@ -28,6 +28,7 @@ play_id song_id play_count
 5 4 600
 
 ### SQL：
+```sql
 SELECT 
  al.album_id, 
  al.album_name, 
@@ -44,7 +45,7 @@ WHERE s.genre = '流行'
 GROUP BY al.album_id, al.album_name, ar.artist_name
 HAVING SUM(p.play_count) > 1000
 ORDER BY total_plays DESC
-
+```
 ### 结果：
 album_id album_name artist_name total_plays
 101 流行精选集 李华 1200
