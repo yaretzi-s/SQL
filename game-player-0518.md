@@ -36,31 +36,23 @@
 
 ## 标准 SQL 查询语句
 ```sql
--- 需求：查询等级>10级、射击类游戏中获得≥2个不同成就的玩家信息
 SELECT 
-    p.player_id,        -- 玩家ID
-    p.player_name,      -- 玩家姓名
-    p.level,            -- 玩家等级
-    COUNT(DISTINCT a.achievement_id) AS achievement_count  -- 不同成就数量
+    p.player_id,
+    p.player_name,
+    p.level, 
+    COUNT(DISTINCT a.achievement_id) AS achievement_count 
 FROM players p 
--- 关联玩家游玩记录
 JOIN play_records pr 
     ON p.player_id = pr.player_id 
--- 关联游戏信息表
 JOIN games g 
     ON g.game_id = pr.game_id
--- 关联成就表（双字段精准匹配：玩家ID+游戏ID）
 JOIN achievements a 
     ON a.player_id = p.player_id 
     AND g.game_id = a.game_id
--- 基础条件筛选
 WHERE p.level > 10
   AND g.game_type = '射击'
--- 按玩家分组
 GROUP BY p.player_id, p.player_name, p.level
--- 分组后筛选：成就数量≥2
 HAVING COUNT(DISTINCT a.achievement_id) >= 2
--- 按成就数量降序排序
 ORDER BY achievement_count DESC;
 ```
 
