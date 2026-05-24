@@ -55,7 +55,7 @@ FROM users u
 JOIN orders o ON u.user_id = o.user_id
 JOIN order_items oi ON o.order_id = oi.order_id
 JOIN products p ON oi.product_id = p.product_id
-WHERE o.order_date BETWEEN '2024-03-01' AND '2024-07-31' # 这里不能写成BETWEEN '2024-03' AND '2024-07'
+WHERE o.order_date BETWEEN '2024-03-01' AND '2024-07-31'  # 这里不能写成BETWEEN '2024-03' AND '2024-07'
 GROUP BY u.user_id, u.user_name
 HAVING COUNT(DISTINCT p.category) >= 3 
    AND SUM(oi.quantity * p.price) > 2000
